@@ -9,6 +9,9 @@ public class TankController : MonoBehaviour
 
     Rigidbody _rb = null;
 
+    [SerializeField] float maxSpeed = .25f;
+    public float MaxSpeed { get => maxSpeed; set => maxSpeed = value; }
+
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();

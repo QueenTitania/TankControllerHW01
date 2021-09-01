@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Killer : MonoBehaviour
+public class Killer : Enemy
 {
-    
+    protected override void PlayerImpact(Player player)
+    {
+        player.Kill();
+    }
 }
