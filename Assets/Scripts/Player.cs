@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
 
     public void IncreaseHealth(int amount)
     {
+        currentHealth += amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         Debug.Log("Player's health: " + currentHealth);
     }

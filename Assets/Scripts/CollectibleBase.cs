@@ -4,10 +4,9 @@ using UnityEngine;
 
 public abstract class CollectibleBase : MonoBehaviour
 {
-    protected abstract void Collect(Player player)
+    protected abstract void Collect(Player player);
 
-
-    [SerializeField] float movementSpeed = 1f;
+    [SerializeField] float movementSpeed = 1;
     protected float MovementSpeed => movementSpeed;
 
     [SerializeField] ParticleSystem collectParticles;
@@ -18,6 +17,7 @@ public abstract class CollectibleBase : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        Debug.Log("movement speed " + movementSpeed);
     }
 
     private void FixedUpdate()
@@ -35,7 +35,7 @@ public abstract class CollectibleBase : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Player player = other.gameObject.GetComponent<Player>();
-        if(player != null)
+        if (player != null)
         {
             Collect(player);
 
@@ -43,16 +43,16 @@ public abstract class CollectibleBase : MonoBehaviour
 
             gameObject.SetActive(false);
         }
-
-        private void Feedback()
-        {
+    }
+    private void Feedback()
+    {
             //particles
             if (collectParticles != null)
                 collectParticles = Instantiate(collectParticles, transform.position, Quaternion.identity);
             //audio
             if (collectSound != null)
                 AudioHelper.PlayClip2D(collectSound, 1f);
-        }
     }
+    
 
 }
